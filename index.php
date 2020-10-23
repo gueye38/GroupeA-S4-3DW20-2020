@@ -9,7 +9,7 @@
 	include 'inc.twig.php';
 
 	//	Recupération du template de l'index
-	$template_index = $twig->loadTemplate('templates/index.tpl');
+	$template_index = $twig->loadTemplate('index.tpl');
 
 	//~ Le nombre de jours à vérifier
 	$n_jours_previsions = 3;
