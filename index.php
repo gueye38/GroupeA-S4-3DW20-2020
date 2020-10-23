@@ -8,8 +8,8 @@
 	//~ Ajout du moteur de templates Twig
 	include 'inc.twig.php';
 
-	//
-	$template_index = $twig->loadTemplate('index.tpl');
+	//	Recupération du template de l'index
+	$template_index = $twig->loadTemplate('templates/index.tpl');
 
 	//~ Le nombre de jours à vérifier
 	$n_jours_previsions = 3;
@@ -31,12 +31,14 @@
 	$_ville = $_data_array['city'];
 	$_journees_meteo = $_data_array['list'];
 
+	//	Pour chacune des journées retournées on obtient l'icone correspondant
 	for ($i = 0; $i < count($_journees_meteo); $i++) {
 		$_meteo = getMeteoImage($_journees_meteo[$i]['weather'][0]['icon']);
 		
 		$_journees_meteo[$i]['meteo'] = $_meteo;
 	}
 
+	// On réalise un rendu de l'index
 	echo $template_index->render(array(
 		'_journees_meteo'	=> $_journees_meteo,
 		'_ville' => $_ville,
@@ -44,9 +46,9 @@
 	));
 
 	function getMeteoImage($code){
-		if(strpos($code, 'n'))
+		if(strpos($code, 'n')){
 			return 'entypo-moon';
-
+		}
 		$_icones_meteo =array(
 			'01d' => 'entypo-light-up',
 			'02d' => 'entypo-light-up',
