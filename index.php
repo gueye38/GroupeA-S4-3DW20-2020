@@ -1,10 +1,16 @@
 <?php
+	//~ Affiche les éventuelles erreurs
+	//~ depuis https://blog.teamtreehouse.com/how-to-debug-in-php
+	//~ À EFFACER UNE FOIS LE DEBUG TERMINÉ
 	ini_set('display_errors', 'On');
 	error_reporting(E_ALL | E_STRICT);
 
+	//~ Ajout du moteur de templates Twig
 	include 'inc.twig.php';
 
+	//
 	$template_index = $twig->loadTemplate('index.tpl');
+
 	//~ Le nombre de jours à vérifier
 	$n_jours_previsions = 3;
 
@@ -20,6 +26,7 @@
 	$data_contenu = file_get_contents($data_url);
 		
 	$_data_array = json_decode($data_contenu, true);
+
 	// Récupérer la ville et les journées retournées
 	$_ville = $_data_array['city'];
 	$_journees_meteo = $_data_array['list'];
@@ -39,22 +46,22 @@
 	function getMeteoImage($code){
 		if(strpos($code, 'n'))
 			return 'entypo-moon';
-		
 
 		$_icones_meteo =array(
-'01d' => 'entypo-light-up',
-'02d' => 'entypo-light-up',
-'03d' => 'entypo-cloud',
-'04d' => 'entypo-cloud',
-'09d' => 'entypo-water', 
-'10d' => 'entypo-water',
-'11d' => 'entypo-flash',
-'13d' => 'entypo-star', 
-'50d' => 'entypo-air');
+			'01d' => 'entypo-light-up',
+			'02d' => 'entypo-light-up',
+			'03d' => 'entypo-cloud',
+			'04d' => 'entypo-cloud',
+			'09d' => 'entypo-water', 
+			'10d' => 'entypo-water',
+			'11d' => 'entypo-flash',
+			'13d' => 'entypo-star', 
+			'50d' => 'entypo-air'
+		);
 
 		if(array_key_exists($code, $_icones_meteo)){
 			return $_icones_meteo[$code];
-		}else{
+		} else {
 			return 'entypo-help';
 		}
 	}
