@@ -1,9 +1,11 @@
 <?php
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL | E_STRICT);
 
 	include 'inc.twig.php';
 
 	$template_index = $twig->loadTemplate('index.tpl');
-
+	//~ Le nombre de jours à vérifier
 	$n_jours_previsions = 3;
 
 	$ville = "Limoges"; 
@@ -18,9 +20,9 @@
 	$data_contenu = file_get_contents($data_url);
 		
 	$_data_array = json_decode($data_contenu, true);
-
+	// Récupérer la ville et les journées retournées
 	$_ville = $_data_array['city'];
-	$_journees_meteo = $_data_array['liste'];
+	$_journees_meteo = $_data_array['list'];
 
 	for ($i = 0; $i < count($_journees_meteo); $i++) {
 		$_meteo = getMeteoImage($_journees_meteo[$i]['weather'][0]['icon']);
