@@ -93,7 +93,7 @@ section.contenu .temperature {
     font-size: 5em;
     transition: color .5s ease
 }
-section.contenu .temperature:hover {
+section.contenu .temperature.temperature.entypo-light-up:hover {
     color: #ff0
 }
 section.contenu .temperature.entypo-cloud:hover {
