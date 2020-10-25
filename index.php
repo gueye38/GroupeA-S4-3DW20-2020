@@ -60,10 +60,12 @@
 			'13d' => 'entypo-star', 
 			'50d' => 'entypo-air'
 		);
-
+// Permet de vérifier si le code météo existe dans notre tableau
 		if(array_key_exists($code, $_icones_meteo)){
+// Ainsi, il retourne l'icone su météo si c'est vrai
 			return $_icones_meteo[$code];
-		} else {
+		} 
+		else {
 			return 'entypo-help';
 		}
 	}
